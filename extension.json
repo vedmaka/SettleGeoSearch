@@ -1,0 +1,35 @@
+{
+	"name": "SettleGeoSearch",
+	"version": "0.0.1",
+	"author": [
+		"Jon Anderton"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:SettleGeoSearch",
+	"descriptionmsg": "settlegeosearch-desc",
+	"license-name": "MIT",
+	"type": "other",
+	"AutoloadClasses": {
+        "SettleGeoSearch": "SettleGeoSearch.class.php",
+		"SettleGeoSearchHooks": "SettleGeoSearch.hooks.php",
+		"SettleGeoSearchAPI": "SettleGeoSearchAPI.class.php"
+	},
+	"ResourceModules": {
+		"ext.settlegeosearch.main": {
+			"styles": [
+				"assets/auto-complete.css"
+			],
+			"scripts": [
+				"assets/auto-complete.js"
+			],
+			"position": "top"
+		}
+	},
+	"config": {
+		"LockFormEditCategories": []
+	},
+	"Hooks": {
+	},
+	"APIModules": {
+		"settlegeosearch": "SettleGeoSearchAPI"
+	}
+}
