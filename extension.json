@@ -17,13 +17,24 @@
 	"ResourceModules": {
 		"ext.settlegeosearch.main": {
 			"styles": [
-				"assets/auto-complete.css"
+				"assets/css/selectize.css",
+				"assets/css/selectize.bootstrap3.css",
+				"assets/css/settlegeosearch.css"
 			],
 			"scripts": [
-				"assets/auto-complete.js"
+                "assets/js/standalone/selectize.js",
+				"assets/settlegeosearch.js",
+				"assets/init.js"
 			],
-			"position": "top"
+            "templates": {
+                "result.js.mustache": "templates/result.js.mustache"
+            },
+			"position": "bottom"
 		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "SettleGeoSearch"
 	},
 	"config": {
 		"LockFormEditCategories": []

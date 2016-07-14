@@ -1,0 +1,29 @@
+.settle-geo-search-wrapper .settle-geo-result-item-main {
+    font-weight: bold;
+}
+
+.settle-geo-search-wrapper .settle-geo-result-item-suffix {
+    color: #a5a5a5;
+}
+
+.settle-geo-search-wrapper .settle-geo-search-result-item-wrapper > i {
+    color: gray;
+}
+
+.settle-geo-search-wrapper .selectize-dropdown .settle-geo-search-result-item-wrapper[data-selectable] {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.settle-geo-search-wrapper .selectize-dropdown [data-selectable] .highlight {
+    background: rgba(94, 191, 255, 0.4);
+}
+
+.settle-geo-search-wrapper .selectize-control.single .selectize-input:after {
+    display: none;
+}
+
+.settle-geo-search-wrapper .selectize-input.focus {
+    outline: none;
+    box-shadow: none;
+}
