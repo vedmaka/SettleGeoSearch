@@ -9,6 +9,7 @@
 		this._$wrapper = $(wrapper);
 		this._$input = this._$wrapper.find('.settle-geo-search-input');
 		this._resultTemplate = null;
+		this._mode = null;
 		this.initialize();
 
 	};
@@ -19,11 +20,12 @@
 	SettleGeoSearch.prototype.initialize = function () {
 
 		this._resultTemplate = mw.template.get( 'ext.settlegeosearch.main', 'result.js.mustache' );
+		this._mode = this._$input.data('input-mode');
 
 		var self = this;
 
 		this._$input.selectize({
-			valueField: 'code',
+			valueField: (this._mode == 1) ? 'code' : 'label',
 			labelField: 'label',
 			searchField: 'label',
 			selectOnTab: true,
