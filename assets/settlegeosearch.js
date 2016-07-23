@@ -25,7 +25,7 @@
 		var self = this;
 
 		this._$input.selectize({
-			valueField: (this._mode == 1) ? 'code' : 'label',
+			valueField: 'code', //(this._mode == 1) ? 'code' : 'label',
 			labelField: 'label',
 			searchField: 'label',
 			selectOnTab: true,

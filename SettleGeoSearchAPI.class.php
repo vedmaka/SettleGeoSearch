@@ -13,7 +13,9 @@ class SettleGeoSearchAPI extends ApiBase {
     	$params = $this->extractRequestParams();
 	    $term = $params['term'];
 
-	    $result['items'] = $this->processTerm( $term );
+	    if( strlen($term) > 2 ) {
+		    $result['items'] = $this->processTerm( $term );
+	    }
 
 	    $this->getResult()->addValue( null, $this->getModuleName(), $result );
 
