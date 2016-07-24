@@ -8,6 +8,7 @@
 
 		this._$wrapper = $(wrapper);
 		this._$input = this._$wrapper.find('.settle-geo-search-input');
+		this._selectize = null;
 		this._resultTemplate = null;
 		this._mode = null;
 		this.initialize();
@@ -26,6 +27,7 @@
 
 		this._$input.selectize({
 			valueField: 'code', //(this._mode == 1) ? 'code' : 'label',
+			hashField: 'code',
 			labelField: 'label',
 			searchField: 'label',
 			selectOnTab: true,
@@ -54,6 +56,8 @@
 				});
 			}
 		});
+
+		this._selectize = this._$input[0].selectize;
 
 	};
 
