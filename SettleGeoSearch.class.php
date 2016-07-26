@@ -8,6 +8,10 @@ class SettleGeoSearch {
     public static function getModules() {
         return array('ext.settlegeosearch.main');
     }
+
+    public static function getSearchPageUrl() {
+    	return SpecialPage::getTitleFor('SettleGeoSearch')->getFullURL();
+    }
     
     public function getHtml( $mode = self::SGS_MODE_VALUE, $name = '', $class = '' ) {
         $templateEngine = new TemplateParser(  __DIR__ . '/templates' );

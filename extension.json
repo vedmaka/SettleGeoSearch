@@ -12,8 +12,14 @@
 	"AutoloadClasses": {
         "SettleGeoSearch": "SettleGeoSearch.class.php",
 		"SettleGeoSearchHooks": "SettleGeoSearch.hooks.php",
-		"SettleGeoSearchAPI": "SettleGeoSearchAPI.class.php"
+		"SettleGeoSearchAPI": "SettleGeoSearchAPI.class.php",
+		"SettleGeoSearchSpecial": "specials/SettleGeoSearch.php"
 	},
+    "MessagesDirs": {
+        "SettleGeoSearch": [
+            "i18n"
+        ]
+    },
 	"ResourceModules": {
 		"ext.settlegeosearch.main": {
 			"styles": [
@@ -30,18 +36,26 @@
                 "result.js.mustache": "templates/result.js.mustache"
             },
 			"position": "bottom"
+		},
+		"ext.settlegeosearch.special": {
+			"styles": [
+				"assets/special/style.css"
+			],
+			"scripts": [
+				"assets/special/script.js"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteExtPath": "SettleGeoSearch"
 	},
-	"config": {
-		"LockFormEditCategories": []
-	},
 	"Hooks": {
 	},
 	"APIModules": {
 		"settlegeosearch": "SettleGeoSearchAPI"
+	},
+	"SpecialPages": {
+		"SettleGeoSearch": "SettleGeoSearchSpecial"
 	}
 }
