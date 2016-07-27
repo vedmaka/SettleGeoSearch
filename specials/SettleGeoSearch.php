@@ -70,7 +70,7 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 
 		$data['term'] = $term;
 
-		if( !empty($geoCode) || !empty($geoText) ) {
+		//if( !empty($geoCode) || !empty($geoText) ) {
 
 			// Process query
 			$sqi = new \SQI\SemanticQueryInterface( array(
@@ -109,9 +109,10 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 						'state'       => $properties['State'] ? $properties['State'][0] : false,
 						'tags'        => $properties['Tags'] ? $properties['Tags'] : false,
 						'updated'     => $properties['Modification date'] ? $properties['Modification date'][0] : '',
-						'description' => $properties['Short description'] ? $properties['Short description'][0] : '',
+						'description' => $properties['Short description'] ? $properties['Short description'][0] : 'No description provided',
 						'processing_time' => $properties['Processing time'] ? $properties['Processing time'][0] : '?',
 						'total_cost' => $properties['Total cost'] ? $properties['Total cost'][0] : '?',
+						'total_cost_cur' => $properties['Total cost currency'] ? $properties['Total cost currency'][0] : '',
 						'difficulty' => $properties['Difficulty'] ? $properties['Difficulty'][0] : '?'
 					);
 
@@ -122,7 +123,7 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 
 			$data['count'] = count($result);
 
-		}
+		//}
 
 		$data['page'] = $page;
 		$data['perPage'] = $perPage;
