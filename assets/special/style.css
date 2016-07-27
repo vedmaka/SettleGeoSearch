@@ -1,0 +1,91 @@
+#settle-geo-search-results-page h1 {
+    font-size: 32px;
+    font-family: "MuseoSansCyrl",sans-serif;
+}
+
+#settle-geo-search-results-page h1 > span {
+    background-color: #ffd100;
+    display: inline-block;
+    padding: 0 5px;
+    font-weight: 500;
+}
+
+#settle-geo-search-results-wrapper .panel .panel-heading a {
+    color: white;
+    transition: none;
+    font-weight: 700;
+}
+
+#settle-geo-search-results-wrapper .panel .panel-body a.label {
+    margin-right: 5px;
+    transition: none;
+}
+
+#settle-geo-search-results-wrapper .panel .panel-heading a:hover {
+    text-decoration: underline;
+}
+
+#search-form-embeded-input {
+    width: 100%;
+}
+
+@media (min-width: 1000px) {
+    #search-form-embeded-input {
+        margin-top: 23px;
+    }
+}
+
+#search-form-embeded-input::after {
+    content: "";
+    display: table;
+    clear: left;
+}
+
+#search-form-embeded-input .settle-geo-search-wrapper {
+    float: left;
+    width: 50%;
+}
+
+#search-form-embeded-input {
+    position: relative;
+}
+
+#search-form-embeded-input .search-submit {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    font-size: 15px;
+    right: 10px;
+    top: 13px;
+    border: 0;
+    background: none;
+    text-align: center;
+    padding: 0;
+    color: #1c9cd7 !important;
+}
+
+#search-form-embeded-input .settle-geo-search-wrapper .selectize-input {
+    border: 0;
+    border-top: 1px solid rgb(204, 204, 204);
+    border-left: 1px solid rgb(204, 204, 204);
+    border-bottom: 1px solid rgb(204, 204, 204);
+    border-radius: 0;
+    padding: 10px 12px;
+    min-height: 42px;
+    background-color: white;
+    outline: none;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+#search-form-embeded-input input.selectize-search-appendix {
+    border-radius: 0;
+    padding: 10px 12px;
+    min-height: 42px;
+    background-color: white;
+    outline: none;
+    width: 50%;
+    border-top: 1px solid rgb(204, 204, 204);
+    border-right: 1px solid rgb(204, 204, 204);
+    border-bottom: 1px solid rgb(204, 204, 204);
+}

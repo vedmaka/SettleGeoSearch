@@ -1,0 +1,77 @@
+<div id="settle-geo-search-results-page">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h1>
+                {{ count }} results for <span>{{ term }}</span>
+            </h1>
+        </div>
+        <div class="col-md-6">
+            <div class="pull-right" id="search-form-embeded-input">
+                <form role="search" action="{{ formurl }}" id="searchform_smw" method="post">
+                    {{& input }}
+                    <input type="text" placeholder="Search" name="geo_text" class="form-control selectize-search-appendix" />
+                    <a href="#" class="search-submit fa fa-search"></a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="settle-geo-search-results-wrapper">
+        <div class="col-md-12">
+
+            {{# items }}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <a target="_blank" href="{{ url }}">{{ title }}</a>
+                        <div class="pull-right">
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            {{# country }} {{ . }} / {{/ country }}
+                            {{# state }} {{ . }} / {{/ state }}
+                            {{# city }} {{ . }} {{/ city }}
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <dl class="dl-horizontal">
+                                    <dt>Processing time:</dt>
+                                    <dd>{{ processing_time }}</dd>
+                                    <dt>Total cost:</dt>
+                                    <dd>{{ total_cost }}</dd>
+                                    <dt>Difficulty:</dt>
+                                    <dd>{{ difficulty }}</dd>
+                                </dl>
+                            </div>
+                            <div class="col-md-9">
+                                {{ description }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                {{# tags }}
+                                    <a class="label label-primary" target="_blank" href="/index.php/Special:SearchByProperty/Tags/{{ . }}">
+                                    {{ . }}
+                                    </a>
+                                {{/ tags }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/ items }}
+
+        </div>
+    </div>
+
+    <!--<div class="row" id="settle-geo-search-pagination-wrapper">
+        <div class="col-md-12">
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                    <li class="next"><a href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>-->
+
+</div>

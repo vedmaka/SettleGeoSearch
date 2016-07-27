@@ -43,7 +43,8 @@
 			],
 			"scripts": [
 				"assets/special/script.js"
-			]
+			],
+			"position": "top"
 		}
 	},
 	"ResourceFileModulePaths": {
