@@ -1,4 +1,8 @@
 {
     "settlegeosearch-desc": "Geo based autocompletion engine",
-    "settlegeosearch-special-title": "Search results"
+    "settlegeosearch-special-title": "Search results",
+    "settlegeosearch-special-results-for": "results for",
+    "settlegeosearch-special-result-processing-time": "Processing time",
+    "settlegeosearch-special-result-total-cost": "Total cost",
+    "settlegeosearch-special-result-difficulty": "Difficulty"
 }

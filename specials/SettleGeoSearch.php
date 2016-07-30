@@ -25,6 +25,8 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 
 	private function renderResults() {
 
+		global $wgLang;
+
 		$data = array(
 			'items' => array(),
 			'count' => 0
@@ -65,7 +67,7 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 
 
 		if( $entity instanceof MenaraSolutions\Geographer\Divisible ) {
-			$term .= ' ' . $entity->inflict('in')->getShortName();
+			$term .= ' ' . $entity->setLanguage( $wgLang->getCode() )->inflict('in')->getShortName();
 		}
 
 		$data['term'] = $term;
@@ -128,6 +130,11 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 		$data['page'] = $page;
 		$data['perPage'] = $perPage;
 		$data['taglink'] = SpecialPage::getTitleFor('SearchByProperty')->getFullURL().'/Tags/';
+
+		$data['_i_results_for'] = wfMessage( 'settlegeosearch-special-results-for' )->plain();
+		$data['_i_processing_time'] = wfMessage( 'settlegeosearch-special-result-processing-time' )->plain();
+		$data['_i_total_cost'] = wfMessage( 'settlegeosearch-special-result-total-cost' )->plain();
+		$data['_i_difficulty'] = wfMessage( 'settlegeosearch-special-result-difficulty' )->plain();
 
 		$templater = new TemplateParser( dirname(__FILE__) . '/../templates/special/' );
 		$html = $templater->processTemplate( $template, $data );
