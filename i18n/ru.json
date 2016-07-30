@@ -4,5 +4,7 @@
     "settlegeosearch-special-results-for": "результатов",
     "settlegeosearch-special-result-processing-time": "Время обработки",
     "settlegeosearch-special-result-total-cost": "Стоимость",
-    "settlegeosearch-special-result-difficulty": "Сложность"
+    "settlegeosearch-special-result-difficulty": "Сложность",
+    "settlegeosearch-special-result-no-description-provided": "Нет описания",
+    "settlegeosearch-input-placeholder": "Введите местоположение.."
 }

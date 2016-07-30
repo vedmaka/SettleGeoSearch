@@ -4,5 +4,7 @@
     "settlegeosearch-special-results-for": "results for",
     "settlegeosearch-special-result-processing-time": "Processing time",
     "settlegeosearch-special-result-total-cost": "Total cost",
-    "settlegeosearch-special-result-difficulty": "Difficulty"
+    "settlegeosearch-special-result-difficulty": "Difficulty",
+    "settlegeosearch-special-result-no-description-provided": "No description provided",
+    "settlegeosearch-input-placeholder": "Type location name.."
 }

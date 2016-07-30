@@ -18,7 +18,8 @@ class SettleGeoSearch {
         return $templateEngine->processTemplate( 'default', array(
         	'input_name' => $name,
 	        'input_class' => $class,
-	        'input_mode' => $mode
+	        'input_mode' => $mode,
+	        'input_placeholder' => wfMessage('settlegeosearch-input-placeholder')->plain()
         ));
     }
     

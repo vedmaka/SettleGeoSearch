@@ -112,11 +112,11 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 						'state'       => $properties['State'] ? $properties['State'][0] : false,
 						'tags'        => $properties['Tags'] ? $properties['Tags'] : false,
 						'updated'     => $properties['Modification date'] ? $properties['Modification date'][0] : '',
-						'description' => $properties['Short description'] ? $properties['Short description'][0] : 'No description provided',
-						'processing_time' => $properties['Processing time'] ? $properties['Processing time'][0] : '?',
+						'description' => $properties['Short description'] ? $properties['Short description'][0] : wfMessage('settlegeosearch-special-result-no-description-provided')->plain(),
+						'processing_time' => $properties['Processing time'] ? wfMessage('sil-card-processing-time-value-'.$properties['Processing time'][0])->plain() : '?',
 						'total_cost' => $properties['Total cost'] ? $properties['Total cost'][0] : '?',
 						'total_cost_cur' => $properties['Total cost currency'] ? $properties['Total cost currency'][0] : '',
-						'difficulty' => $properties['Difficulty'] ? $properties['Difficulty'][0] : '?'
+						'difficulty' => $properties['Difficulty'] ? wfMessage('sil-card-difficulty-value-'.$properties['Difficulty'][0])->plain() : '?'
 					);
 
 					$data['items'][] = $item;
