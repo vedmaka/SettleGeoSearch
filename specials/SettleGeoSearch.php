@@ -132,7 +132,7 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 		$data['perPage'] = $perPage;
 		$data['taglink'] = SpecialPage::getTitleFor('SearchByProperty')->getFullURL().'/Tags/';
 
-		$templater = new TemplateParser( dirname(__FILE__) . '/../templates/special/' );
+		$templater = new TemplateParser( dirname(__FILE__) . '/../templates/special/', true );
 		$html = $templater->processTemplate( $template, $data );
 		$this->getOutput()->addHTML( $html );
 
