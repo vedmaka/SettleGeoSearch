@@ -31,6 +31,7 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 			'items' => array(),
 			'count' => 0
 		);
+
 		$template = 'default';
 
 		$this->getOutput()->addModules( SettleGeoSearch::getModules() );
@@ -130,11 +131,6 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 		$data['page'] = $page;
 		$data['perPage'] = $perPage;
 		$data['taglink'] = SpecialPage::getTitleFor('SearchByProperty')->getFullURL().'/Tags/';
-
-		$data['_i_results_for'] = wfMessage( 'settlegeosearch-special-results-for' )->plain();
-		$data['_i_processing_time'] = wfMessage( 'settlegeosearch-special-result-processing-time' )->plain();
-		$data['_i_total_cost'] = wfMessage( 'settlegeosearch-special-result-total-cost' )->plain();
-		$data['_i_difficulty'] = wfMessage( 'settlegeosearch-special-result-difficulty' )->plain();
 
 		$templater = new TemplateParser( dirname(__FILE__) . '/../templates/special/' );
 		$html = $templater->processTemplate( $template, $data );
