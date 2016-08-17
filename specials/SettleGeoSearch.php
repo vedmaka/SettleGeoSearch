@@ -1,5 +1,8 @@
 <?php
 
+use Foolz\SphinxQL\SphinxQL;
+use Foolz\SphinxQL\Drivers\Mysqli\Connection;
+
 class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 
 	public function __construct() {
@@ -24,6 +27,123 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 	}
 
 	private function renderResults() {
+
+		global $wgLang;
+
+		$data = array(
+			'items' => array(),
+			'count' => 0
+		);
+
+		$template = 'default';
+
+		$this->getOutput()->addModules( SettleGeoSearch::getModules() );
+		$search = new SettleGeoSearch();
+		$data['input'] = $search->getHtml( SettleGeoSearch::SGS_MODE_VALUE, 'geo_id' );
+		$data['formurl'] = SettleGeoSearch::getSearchPageUrl();
+
+		$geoCode = $this->getRequest()->getVal('geo_id');
+		$geoText = $this->getRequest()->getVal('geo_text');
+		$page = $this->getRequest()->getVal('page', 0);
+		$perPage = 10;
+
+		$term = '*';
+		if( !empty($geoText) ) {
+			$term = '"' . trim( htmlspecialchars( str_replace(array('"','~','*'), '',$geoText) ) ) . '"';
+		}
+
+		// Determine entity
+		$entity = false;
+		try {
+			$entity = MenaraSolutions\Geographer\City::build( $geoCode );
+		}catch (Exception $e) {
+			try {
+				$entity = MenaraSolutions\Geographer\State::build( $geoCode );
+			}catch (Exception $e) {
+				try {
+					$earth = new MenaraSolutions\Geographer\Earth();
+					$entity = $earth->findOne( array('geonamesCode' => $geoCode) );
+				}catch (Exception $e) {
+					$term = '';
+				}
+			}
+		}
+
+
+		if( $entity instanceof MenaraSolutions\Geographer\Divisible ) {
+			$term .= ' ' . $entity->setLanguage( $wgLang->getCode() )->inflict('in')->getShortName();
+		}
+
+		$data['term'] = $term;
+
+		//TODO: get results
+		$query = SphinxStore::getInstance()->getQuery();
+
+		$pl1 = "";
+		$pl2 = "";
+		if( $geoCode ) {
+			$pl1 = ", ANY(x={$geoCode} FOR x IN properties.geocodes) as p";
+			$pl2 = " WHERE p=1";
+		}
+
+		$pl3 = "";
+		if( !empty($geoText) ) {
+			if( $geoCode ) {
+				$pl3 = " WHERE MATCH('{$geoText}')";
+				$pl2 = " AND p=1";
+			}else{
+				$pl3 = " WHERE MATCH('{$geoText}')";
+			}
+		}
+
+		$offset = $perPage * $page;
+		$sql = "SELECT *{$pl1} FROM ".SphinxStore::getInstance()->getIndex()."{$pl3}{$pl2} LIMIT {$offset},{$perPage};";
+
+		$result = $query->query( $sql )->execute();
+
+		if( $result->count() ) {
+			foreach ( $result as $r ) {
+
+				$title = Title::newFromID($r['id']);
+				$properties = json_decode($r['properties'], true);
+
+				$item = array(
+					'real_title'  => $r['page_title'],
+					'url'         => $title->getFullURL(),
+					'title'       => $r['alias_title'],
+					'city'        => isset($properties['city']) ? $properties['city'][0] : false,
+					'country'     => isset($properties['country']) ? $properties['country'][0] : false,
+					'state'       => isset($properties['state']) ? $properties['state'][0] : false,
+					'tags'        => isset($properties['tags']) ? $properties['tags'] : false,
+					'updated'     => isset($properties['modification_date']) ? $properties['modification_date'][0] : '',
+					'description' => isset($properties['short_description']) ? $properties['short_description'][0] : wfMessage('settlegeosearch-special-result-no-description-provided')->plain(),
+					'processing_time' => isset($properties['processing_time']) ? wfMessage('sil-card-processing-time-value-'.$properties['processing_time'][0])->plain() : '?',
+					'total_cost' => isset($properties['total_cost']) ? $properties['total_cost'][0] : '?',
+					'total_cost_cur' => isset($properties['total_cost_currency']) ? $properties['total_cost_currency'][0] : '',
+					'difficulty' => isset($properties['difficulty']) ? wfMessage('sil-card-difficulty-value-'.$properties['difficulty'][0])->plain() : '?'
+				);
+
+				$data['items'][] = $item;
+
+			}
+		}
+		$data['count'] = $result->count();
+
+		$data['page'] = $page;
+		$data['perPage'] = $perPage;
+		$data['taglink'] = SpecialPage::getTitleFor('SearchByProperty')->getFullURL().'/Tags/';
+		$data['geoText'] = $geoText;
+
+		$templater = new TemplateParser( dirname(__FILE__) . '/../templates/special/', true );
+		$html = $templater->processTemplate( $template, $data );
+		$this->getOutput()->addHTML( $html );
+
+	}
+
+	/**
+	 * @deprecated since Sphinx integration
+	 */
+	private function renderResultsEx() {
 
 		global $wgLang;
 
