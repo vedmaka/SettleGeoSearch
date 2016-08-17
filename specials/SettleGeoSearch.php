@@ -79,6 +79,10 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 		//TODO: get results
 		$query = SphinxStore::getInstance()->getQuery();
 
+		//TODO: improve protection
+		$geoCode = str_replace( array("/", "\\", "'", '"'), "", $geoCode );
+		$geoText = str_replace( array("/", "\\", "'", '"'), "", $geoText );
+
 		$pl1 = "";
 		$pl2 = "";
 		if( $geoCode ) {
