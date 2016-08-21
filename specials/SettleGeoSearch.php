@@ -93,15 +93,23 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 		$pl3 = "";
 		if( !empty($geoText) ) {
 			if( $geoCode ) {
-				$pl3 = " WHERE MATCH('{$geoText}')";
+				$pl3 = " WHERE MATCH('\"{$geoText}\"/1')";
+				//$pl3 = " WHERE MATCH('{$geoText}')";
 				$pl2 = " AND p=1";
 			}else{
-				$pl3 = " WHERE MATCH('{$geoText}')";
+				$pl3 = " WHERE MATCH('\"{$geoText}\"/1')";
+				//$pl3 = " WHERE MATCH('{$geoText}')";
 			}
 		}
 
+		// Save into suggestion index for autocomplete
+		if( !empty($geoText) ) {
+			//TODO: implement suggestions
+		}
+
 		$offset = $perPage * $page;
-		$sql = "SELECT *{$pl1} FROM ".SphinxStore::getInstance()->getIndex()."{$pl3}{$pl2} LIMIT {$offset},{$perPage};";
+		$sql = "SELECT *{$pl1} FROM ".SphinxStore::getInstance()->getIndex()."{$pl3}{$pl2} LIMIT {$offset},{$perPage} OPTION ranker=matchany;";
+		//$sql = "SELECT *{$pl1} FROM ".SphinxStore::getInstance()->getIndex()."{$pl3}{$pl2} LIMIT {$offset},{$perPage};";
 
 		$result = $query->query( $sql )->execute();
 

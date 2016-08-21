@@ -13,7 +13,8 @@
         "SettleGeoSearch": "SettleGeoSearch.class.php",
 		"SettleGeoSearchHooks": "SettleGeoSearch.hooks.php",
 		"SettleGeoSearchAPI": "SettleGeoSearchAPI.class.php",
-		"SettleGeoSearchSpecial": "specials/SettleGeoSearch.php"
+		"SettleGeoSearchSpecial": "specials/SettleGeoSearch.php",
+		"SphinxSuggestions": "includes/SphinxSuggestions.php"
 	},
     "MessagesDirs": {
         "SettleGeoSearch": [
