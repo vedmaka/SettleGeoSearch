@@ -89,9 +89,10 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 			//$pl1 = ", ANY(x={$geoCode} FOR x IN properties.geocodes) as p";
 
 			//if we are looking for city, lets also look for pages which has state of the city specified:
+			//TODO: only if record have no city specified (state-wide)
 			if( $entity instanceof MenaraSolutions\Geographer\City ) {
 				$stateCode = $entity->getParentCode();
-				$pl1 = ", IN(properties.geocodes, {$geoCode}, {$stateCode}) as p";
+				$pl1 = ", IN(properties.geocodes, {$geoCode}) OR ( IN(properties.geocodes, {$geoCode}, {$stateCode})  AND properties.city_code IS NULL ) as p";
 			}else {
 				$pl1 = ", IN(properties.geocodes, {$geoCode}) as p";
 			}
