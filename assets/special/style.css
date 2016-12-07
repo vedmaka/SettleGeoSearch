@@ -76,6 +76,11 @@
     outline: none;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
+    cursor: text !important;
+}
+
+#search-form-embeded-input .settle-geo-search-wrapper .selectize-input input {
+    cursor: text !important;
 }
 
 #search-form-embeded-input input.selectize-search-appendix {

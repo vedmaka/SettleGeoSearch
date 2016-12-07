@@ -39,8 +39,6 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 
 		$this->getOutput()->addModules( SettleGeoSearch::getModules() );
 		$search = new SettleGeoSearch();
-		$data['input'] = $search->getHtml( SettleGeoSearch::SGS_MODE_VALUE, 'geo_id' );
-		$data['formurl'] = SettleGeoSearch::getSearchPageUrl();
 
 		$geoCode = $this->getRequest()->getVal('geo_id');
 		$geoText = $this->getRequest()->getVal('geo_text');
@@ -83,6 +81,12 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 		$geoCode = str_replace( array("/", "\\", "'", '"'), "", $geoCode );
 		$geoText = str_replace( array("/", "\\", "'", '"'), "", $geoText );
 
+		// samples:
+		// Newcastle    = 2155472
+		// NSW          = 2155400
+		// Australia    = 2077456
+
+
 		$pl1 = "";
 		$pl2 = "";
 		if( $geoCode ) {
@@ -92,7 +96,7 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 			//TODO: only if record have no city specified (state-wide)
 			if( $entity instanceof MenaraSolutions\Geographer\City ) {
 				$stateCode = $entity->getParentCode();
-				$pl1 = ", IN(properties.geocodes, {$geoCode}) OR ( IN(properties.geocodes, {$geoCode}, {$stateCode})  AND properties.city_code IS NULL ) as p";
+				$pl1 = ", IN(properties.geocodes, {$geoCode}) OR ( IN(properties.geocodes, {$geoCode}, {$stateCode}) AND properties.city_code IS NULL ) as p";
 			}else {
 				$pl1 = ", IN(properties.geocodes, {$geoCode}) as p";
 			}
@@ -154,6 +158,14 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 		$data['perPage'] = $perPage;
 		$data['taglink'] = SpecialPage::getTitleFor('SearchByProperty')->getFullURL().'/Tags/';
 		$data['geoText'] = $geoText;
+
+		// Geo input & Form URL, apply preselect field to the geo-input
+		if( $geoCode && $entity instanceof MenaraSolutions\Geographer\Divisible ) {
+			$data['input'] = $search->getHtml( SettleGeoSearch::SGS_MODE_VALUE, 'geo_id', '', $geoCode, $entity->inflict('default')->getShortName() );
+		}else{
+			$data['input'] = $search->getHtml( SettleGeoSearch::SGS_MODE_VALUE, 'geo_id' );
+		}
+		$data['formurl'] = SettleGeoSearch::getSearchPageUrl();
 
 		$templater = new TemplateParser( dirname(__FILE__) . '/../templates/special/', true );
 		$html = $templater->processTemplate( $template, $data );

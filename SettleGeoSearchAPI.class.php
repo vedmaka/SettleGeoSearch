@@ -51,7 +51,7 @@ class SettleGeoSearchAPI extends ApiBase {
     public function getAllowedParams() {
         return array(
         	'term' => array(
-        		ApiBase::PARAM_REQUIRED => true,
+        		ApiBase::PARAM_REQUIRED => false,
 		        ApiBase::PARAM_TYPE => 'string'
 	        )
         );
