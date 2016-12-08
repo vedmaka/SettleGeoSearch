@@ -102,14 +102,80 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 			}*/
 
 			// Add self code into query
-			$geocodesSql = array( $geoCode );
+			/*$geocodesSql = array( $geoCode );
+
 			if( $entity instanceof MenaraSolutions\Geographer\City ) {
 				// State code into query
 				$geocodesSql[] = $entity->getParentCode();
 				// Country code into query
 				$geocodesSql[] = $entity->parent()->geonamesCode;
 			}
-			$pl1 = ", IN( properties.geocodes, ".implode(',', $geocodesSql)." ) as p";
+			$pl1 = ", IN( properties.geocodes, ".implode(',', $geocodesSql)." ) as p";*/
+
+			// If we're looking for particular city display:
+			// - all pages that have city in their code
+			// - all pages that are state-wide for this city
+			// - all pages that are country-wide for that state country
+			if( $entity instanceof \MenaraSolutions\Geographer\City ) {
+
+				$stateCode = $entity->getParentCode();
+
+				$tempEarth = new MenaraSolutions\Geographer\Earth();
+				$tempCountry = $tempEarth->findOne( array('code' => $entity->parent()->getParentCode()) );
+				$countryCode = $tempCountry->geonamesCode;
+
+				$pl1 = ", (";
+				$pl1 .= "( IN( properties.geocodes, {$geoCode} ) )"; // AND IN( properties.geocategoryscope, 2) )";
+				$pl1 .= " OR( IN(properties.geocodes, {$stateCode} ) AND IN( properties.geocategoryscope, 1) )";
+				$pl1 .= " OR( IN(properties.geocodes, {$countryCode} ) AND IN( properties.geocategoryscope, 0) )";
+				$pl1 .= " )";
+			}
+
+			// If we're looking for state-wide search lets display:
+			// - all results that have this state in codes
+			// - all results that country-wide for this state
+			if( $entity instanceof \MenaraSolutions\Geographer\State ) {
+
+				$tempEarth = new MenaraSolutions\Geographer\Earth();
+				$tempCountry = $tempEarth->findOne( array('code' => $entity->getParentCode()) );
+				$countryCode = $tempCountry->geonamesCode;
+
+				$pl1 = ", (";
+				$pl1 .= "( IN( properties.geocodes, {$geoCode} ) )"; // AND IN( properties.geocategoryscope, 1 ) )";
+				$pl1 .= "OR ( IN( properties.geocodes, {$countryCode} ) AND IN( properties.geocategoryscope, 0 ) )";
+				$pl1 .= " )";
+
+			}
+
+			// If we're looking country-wide lets display all results where country is available
+			if( $entity instanceof \MenaraSolutions\Geographer\Country ) {
+
+				$pl1 = ", (";
+				$pl1 .= "( IN( properties.geocodes, {$geoCode} ) )"; // AND IN( properties.geocategoryscope, 0 ) )";
+				$pl1 .= " )";
+
+			}
+
+			/*$pl1 = ", (";
+			// Search is for City
+			if( $entity instanceof \MenaraSolutions\Geographer\City ) {
+				// Display only pages that explicitly have their binding set to the selected city
+				$pl1 .= "( IN( properties.geocodes, {$geoCode} ) AND IN( properties.geocategoryscope, 2 ) )";
+			}
+			// Search is for State
+			if( $entity instanceof \MenaraSolutions\Geographer\State ) {
+				// Display only pages that explicitly have their binding set to the selected state
+				$pl1 .= "( IN( properties.geocodes, {$geoCode} ) AND IN( properties.geocategoryscope, 1 ) )";
+			}
+			// Search is for Country
+			if( $entity instanceof \MenaraSolutions\Geographer\Country ) {
+				// Display only pages that explicitly have their binding set to the selected country
+				$pl1 .= "( IN( properties.geocodes, {$geoCode} ) AND IN( properties.geocategoryscope, 0 ) )";
+			}
+			$pl1 .= " )";*/
+
+			$pl1 .= " AS p";
+
 			$pl2 = " WHERE p=1";
 		}
 
