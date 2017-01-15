@@ -6,5 +6,7 @@
     "settlegeosearch-special-result-total-cost": "Total cost",
     "settlegeosearch-special-result-difficulty": "Difficulty",
     "settlegeosearch-special-result-no-description-provided": "No description provided",
-    "settlegeosearch-input-placeholder": "Type location name.."
+    "settlegeosearch-input-placeholder": "Type location name..",
+    "settlegeosearch-special-result-additional-link-geo": "Didn't find what you're looking for? Search our categories page for <a href='$2'>$1</a>",
+    "settlegeosearch-special-result-additional-link-text": "Didn't find what you're looking for? Search our <a href='$1'>categories page</a>"
 }

@@ -32,7 +32,8 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 
 		$data = array(
 			'items' => array(),
-			'count' => 0
+			'count' => 0,
+			'moretext' => ''
 		);
 
 		$template = 'default';
@@ -67,6 +68,17 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 			}
 		}
 
+		if( $geoText ) {
+			$data['moretext'] = wfMessage('settlegeosearch-special-result-additional-link-text')
+				->params( SpecialPage::getTitleFor('SettleCategorySearch')->getFullURL() )
+				->plain();
+		}
+
+		if( $geoCode ) {
+			$data['moretext'] = wfMessage('settlegeosearch-special-result-additional-link-geo')
+				->params( $entity->setLanguage( $wgLang->getCode() )->getShortName(), SpecialPage::getTitleFor('SettleCategorySearch')->getFullURL().'/'.$geoCode )
+				->plain();
+		}
 
 		if( $entity instanceof MenaraSolutions\Geographer\Divisible ) {
 			$term .= ' ' . $entity->setLanguage( $wgLang->getCode() )->inflict('in')->getShortName();
