@@ -12,6 +12,8 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 	public function execute( $subPage ) {
 
 		$this->getOutput()->addModules('ext.settlegeosearch.special');
+		$this->getOutput()->addModules('skins.settlein.animate.standalone');
+
 		$this->getOutput()->setPageTitle( wfMessage('settlegeosearch-special-title')->plain() );
 
 		if( !$this->getRequest()->wasPosted() ) {
