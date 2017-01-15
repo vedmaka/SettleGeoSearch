@@ -25,10 +25,8 @@
                     <div class="panel-heading">
                         <a target="_blank" href="{{ url }}">{{ title }}</a>
                         <div class="pull-right">
-                            <i class="glyphicon glyphicon-map-marker"></i>
-                            {{# country }} {{ . }} / {{/ country }}
-                            {{# state }} {{ . }} / {{/ state }}
-                            {{# city }} {{ . }} {{/ city }}
+                            <i class="glyphicon glyphicon-map-marker pull-left"></i>
+                            {{& location_text }}
                         </div>
                     </div>
                     <div class="panel-body">

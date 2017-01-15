@@ -12,6 +12,31 @@ class SettleGeoSearch {
     public static function getSearchPageUrl() {
     	return SpecialPage::getTitleFor('SettleGeoSearch')->getFullURL();
     }
+
+	/**
+	 * @param array  $locations
+	 *
+	 * @param string $class
+	 *
+	 * @return string
+	 */
+    public static function formatLocationBreadcrumbs( $locations, $class = '' ) {
+
+    	$breadcrumbs = '<ol class="breadcrumb '.$class.'">';
+			if( array_key_exists('country', $locations) ) {
+				$breadcrumbs .= '<li class="active">'.$locations['country'][0].'</li>';
+			}
+		    if( array_key_exists('state', $locations) ) {
+			    $breadcrumbs .= '<li class="active">'.$locations['state'][0].'</li>';
+		    }
+		    if( array_key_exists('city', $locations) ) {
+			    $breadcrumbs .= '<li class="active">'.$locations['city'][0].'</li>';
+		    }
+    	$breadcrumbs .= '</ol>';
+
+    	return $breadcrumbs;
+
+    }
     
     public function getHtml( $mode = self::SGS_MODE_VALUE, $name = '', $class = '', $preselected_code = '', $preselected_text = '' ) {
         $templateEngine = new TemplateParser(  __DIR__ . '/templates', true );

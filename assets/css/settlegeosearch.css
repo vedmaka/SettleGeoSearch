@@ -31,3 +31,29 @@
 #settle-geo-search-categories-link {
     text-align: center;
 }
+
+.breadcrumb.location-in-search li {
+    color: white;
+}
+
+.breadcrumb.location-in-search a {
+    color: white;
+}
+
+#settle-geo-search-results-wrapper .panel-heading .location-in-search {
+    margin: 0;
+    display: inline-block;
+    padding: 0;
+}
+
+#settle-geo-search-results-wrapper .panel-heading .location-in-search li::before {
+    color: white;
+}
+
+#settle-geo-search-results-wrapper .panel-heading i {
+    color: white;
+    position: relative;
+    top: 4px;
+    padding-right: 4px;
+    display: inline-block;
+}

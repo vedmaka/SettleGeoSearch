@@ -233,7 +233,8 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 					'processing_time' => isset($properties['processing_time']) ? wfMessage('sil-card-processing-time-value-'.$properties['processing_time'][0])->plain() : '?',
 					'total_cost' => isset($properties['total_cost']) ? $properties['total_cost'][0] : '?',
 					'total_cost_cur' => isset($properties['total_cost_currency']) ? $properties['total_cost_currency'][0] : '',
-					'difficulty' => isset($properties['difficulty']) ? wfMessage('sil-card-difficulty-value-'.$properties['difficulty'][0])->plain() : '?'
+					'difficulty' => isset($properties['difficulty']) ? wfMessage('sil-card-difficulty-value-'.$properties['difficulty'][0])->plain() : '?',
+					'location_text' => SettleGeoSearch::formatLocationBreadcrumbs( $properties, 'location-in-search' )
 				);
 
 				$data['items'][] = $item;
