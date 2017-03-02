@@ -74,14 +74,20 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 			$data['moretext'] = wfMessage('settlegeosearch-special-result-additional-link-text')
 				->params(
 					SpecialPage::getTitleFor('SettleCategorySearch')->getFullURL(),
-					SpecialPage::getTitleFor('SettleRequestArticle')->getFullURL()
+					SpecialPage::getTitleFor('SettleRequestArticle')->getFullURL(),
+					SpecialPage::getTitleFor('SettleNewArticle')->getFullURL()
 				)
 				->plain();
 		}
 
 		if( $geoCode ) {
 			$data['moretext'] = wfMessage('settlegeosearch-special-result-additional-link-geo')
-				->params( $entity->setLanguage( $wgLang->getCode() )->getShortName(), SpecialPage::getTitleFor('SettleCategorySearch')->getFullURL().'/'.$geoCode )
+				->params(
+					$entity->setLanguage( $wgLang->getCode() )->getShortName(),
+					SpecialPage::getTitleFor('SettleCategorySearch')->getFullURL().'/'.$geoCode,
+					SpecialPage::getTitleFor('SettleRequestArticle')->getFullURL(),
+					SpecialPage::getTitleFor('SettleNewArticle')->getFullURL()
+				)
 				->plain();
 		}
 
