@@ -72,7 +72,10 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 
 		if( $geoText ) {
 			$data['moretext'] = wfMessage('settlegeosearch-special-result-additional-link-text')
-				->params( SpecialPage::getTitleFor('SettleCategorySearch')->getFullURL() )
+				->params(
+					SpecialPage::getTitleFor('SettleCategorySearch')->getFullURL(),
+					SpecialPage::getTitleFor('SettleRequestArticle')->getFullURL()
+				)
 				->plain();
 		}
 
