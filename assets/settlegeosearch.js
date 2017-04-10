@@ -28,7 +28,7 @@
 			this._preselected = {
 				text: this._$input.data('preselected-text'),
 				code: this._$input.data('preselected-code')
-			}
+			};
 		}
 
 		var self = this;
