@@ -73,6 +73,8 @@
     border-top-right-radius: 50px;
     padding: 1px 4px;
     animation: wrapper_error 0.5s;
+    -webkit-animation: wrapper_error 0.5s;;
+    -o-animation: wrapper_error 0.5s;;
 }
 
 @keyframes wrapper_error {
@@ -81,5 +83,24 @@
     }
     100% {
         top: -24px;
+    }
+}
+
+#country-select-wrapper .settle-geo-search-wrapper .settle-geo-search-input-error {
+    top: auto;
+    bottom: -16px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 50px;
+    -webkit-animation: wrapper_error_bottom 0.5s;
+    -o-animation: wrapper_error_bottom 0.5s;
+    animation: wrapper_error_bottom 0.5s;
+}
+
+@keyframes wrapper_error_bottom {
+    0% {
+        bottom: 0;
+    }
+    100% {
+        bottom: -16px;
     }
 }
