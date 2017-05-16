@@ -49,5 +49,28 @@ class SettleGeoSearch {
 	        'input_preselected_text' => $preselected_text
         ));
     }
+
+    public static function getGeoEntityFromId( $geoCode ) {
+	    // Determine entity
+	    $entity = null;
+
+	    try {
+		    $entity = MenaraSolutions\Geographer\City::build( $geoCode );
+	    }catch (Exception $e) {
+		    try {
+			    $entity = MenaraSolutions\Geographer\State::build( $geoCode );
+		    }catch (Exception $e) {
+			    try {
+				    $earth = new MenaraSolutions\Geographer\Earth();
+				    $entity = $earth->findOne( array('geonamesCode' => $geoCode) );
+			    }catch (Exception $e) {
+				    return null;
+			    }
+		    }
+	    }
+
+	    return $entity;
+
+    }
     
 }
