@@ -1,19 +1,10 @@
 <div id="settle-geo-search-results-page">
 
     <div class="row">
-        <div class="col-md-6" id="special-page-search-results-summary">
+        <div class="col-xs-12" id="special-page-search-results-summary">
             <h1 class="animated fadeIn" style="opacity: 0;">
                 {{ count }} {{ _ "settlegeosearch-special-results-for" }} <span>{{ term }}</span>
             </h1>
-        </div>
-        <div class="col-md-6">
-            <div class="pull-right" id="search-form-embeded-input">
-                <form role="search" action="{{ formurl }}" id="searchform_smw" method="post">
-                    {{& input }}
-                    <input type="text" placeholder="{{ _ "sil-search-form-field-label-search" }}" name="geo_text" class="form-control selectize-search-appendix" value="{{ geoText }}" />
-                    <a href="#" class="search-submit fa fa-search"></a>
-                </form>
-            </div>
         </div>
     </div>
 
