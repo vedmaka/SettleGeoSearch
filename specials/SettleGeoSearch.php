@@ -238,8 +238,28 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
                     $strUpdated = date('j F Y', wfTimestamp(TS_UNIX, $title->getTouched()));
                 }
 
+                $pageAuthor = User::newFromId( $title->getFirstRevision()->getUser() );
+                $pageAuthorStr = $pageAuthor->getName();
+                $pageAuthorImg = "/extensions/SettleGeoSearch/assets/img/avatar-large.png";
+                if( OpauthProfile::exists( $pageAuthor->getId() ) ) {
+                    $profile = new OpauthProfile( $pageAuthor->getId() );
+                    if( $profile->image ) {
+                        $pageAuthorImg = $profile->image;
+                    }
+                }
+
+                $pageContribsCount = 1;
+                $page = WikiPage::factory( $title );
+                $tEditors = $page->getContributors();
+                $pageContribsCount = $tEditors->count();
+
+
 				$item = array(
 					'real_title'  => $r['page_title'],
+					'page_author' => $pageAuthorStr,
+					'page_author_image' => $pageAuthorImg,
+					'contributors' => $pageContribsCount,
+					'userlink' => $pageAuthor->getUserPage()->getFullURL(),
 					'url'         => $title->getFullURL(),
 					'title'       => $r['alias_title'],
 					'city'        => isset($properties['city']) ? $properties['city'][0] : false,

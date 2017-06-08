@@ -15,12 +15,12 @@
             <div class="row sgs-new-search-result-item">
                 <div class="col-sm-4 sgs-new-col-left">
                     <div class="sgs-new-userpic">
-                        <div class="sgs-userpic-wrapper">
-                            <img src="/extensions/SettleGeoSearch/assets/img/avatar-large.png" />
-                        </div>
+                        <a class="sgs-userpic-wrapper" href="{{& userlink }}" title="{{ page_author }}">
+                            <img src="{{ page_author_image }}" />
+                        </a>
                         <span>Created by</span>
                     </div>
-                    <div class="sgs-new-contribs">Contributors: 11</div>
+                    <div class="sgs-new-contribs">Contributors: {{ contributors }}</div>
                     <div class="sgs-new-last-updated">Last Updated: {{ updated }}</div>
                 </div>
                 <div class="col-sm-8 sgs-new-col-right">
@@ -55,6 +55,12 @@
                     </li>
                 </ul>
             </div>
+        </div>
+    </div>
+
+    <div class="row" id="settle-geo-search-categories-link">
+        <div class="col-md-12 animated fadeIn" style="opacity: 0;">
+            {{& moretext }}
         </div>
     </div>
 

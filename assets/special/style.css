@@ -192,7 +192,7 @@
 }
 
 .sgs-new-search-result-item .sgs-new-userpic {
-
+    display: block;
 }
 
 .sgs-new-search-result-item .sgs-new-userpic .sgs-userpic-wrapper {
@@ -202,6 +202,7 @@
     border: 2px solid rgb(0, 158, 242);
     overflow: hidden;
     margin: 0 auto;
+    display: block;
 }
 
 .sgs-new-search-result-item .sgs-new-userpic .sgs-userpic-wrapper img {
@@ -231,6 +232,6 @@
 
 .sgs-new-search-result-item:nth-child(odd) .sgs-new-col-left,
 .sgs-new-search-result-item:nth-child(odd) .sgs-new-col-right,
-.sgs-new-search-result-item .sgs-new-userpic .sgs-userpic-wrapper {
+.sgs-new-search-result-item:nth-child(odd) .sgs-new-userpic .sgs-userpic-wrapper {
     border: 2px solid rgb(55, 195, 85);
 }
