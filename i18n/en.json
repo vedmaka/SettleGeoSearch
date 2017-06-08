@@ -8,5 +8,7 @@
     "settlegeosearch-special-result-no-description-provided": "No description provided",
     "settlegeosearch-input-placeholder": "Type location name..",
     "settlegeosearch-special-result-additional-link-geo": "Didn't find what you're looking for? Try search our categories page for <a href='$2'>$1</a> or <a href='$3'>Request new page</a>, you can also just <a href='$4'>Create new page</a>",
-    "settlegeosearch-special-result-additional-link-text": "Didn't find what you're looking for? Try search our <a href='$1'>Categories page</a> or <a href='$2'>Request new page</a>, you can also just <a href='$3'>Create new page</a>"
+    "settlegeosearch-special-result-additional-link-text": "Didn't find what you're looking for? Try search our <a href='$1'>Categories page</a> or <a href='$2'>Request new page</a>, you can also just <a href='$3'>Create new page</a>",
+
+    "settlegeosearch-special-results-title": "Search results for "
 }

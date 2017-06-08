@@ -231,6 +231,13 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 				$title = Title::newFromID($r['id']);
 				$properties = json_decode($r['properties'], true);
 
+                $strUpdated = '';
+                if( isset($properties['modification_date']) && count($properties['modification_date']) && !empty($properties['modification_date'][0]) ) {
+                    $strUpdated = $properties['modification_date'];
+                }else{
+                    $strUpdated = date('j F Y', wfTimestamp(TS_UNIX, $title->getTouched()));
+                }
+
 				$item = array(
 					'real_title'  => $r['page_title'],
 					'url'         => $title->getFullURL(),
@@ -239,7 +246,7 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 					'country'     => isset($properties['country']) ? $properties['country'][0] : false,
 					'state'       => isset($properties['state']) ? $properties['state'][0] : false,
 					'tags'        => isset($properties['tags']) ? $properties['tags'] : false,
-					'updated'     => isset($properties['modification_date']) ? $properties['modification_date'][0] : '',
+					'updated'     => $strUpdated, //isset($properties['modification_date']) ? $properties['modification_date'][0] : '',
 					'description' => isset($properties['short_description']) ? $properties['short_description'][0] : wfMessage('settlegeosearch-special-result-no-description-provided')->plain(),
 					'processing_time' => isset($properties['processing_time']) ? wfMessage('sil-card-processing-time-value-'.$properties['processing_time'][0])->plain() : '?',
 					'total_cost' => isset($properties['total_cost']) ? $properties['total_cost'][0] : '?',
@@ -364,7 +371,7 @@ class SettleGeoSearchSpecial extends UnlistedSpecialPage {
 						'country'     => $properties['Country'] ? $properties['Country'][0] : false,
 						'state'       => $properties['State'] ? $properties['State'][0] : false,
 						'tags'        => $properties['Tags'] ? $properties['Tags'] : false,
-						'updated'     => $properties['Modification date'] ? $properties['Modification date'][0] : '',
+						'updated'     => $strUpdated, //$properties['Modification date'] ? $properties['Modification date'][0] : '',
 						'description' => $properties['Short description'] ? $properties['Short description'][0] : wfMessage('settlegeosearch-special-result-no-description-provided')->plain(),
 						'processing_time' => $properties['Processing time'] ? wfMessage('sil-card-processing-time-value-'.$properties['Processing time'][0])->plain() : '?',
 						'total_cost' => $properties['Total cost'] ? $properties['Total cost'][0] : '?',

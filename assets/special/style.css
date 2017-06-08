@@ -94,3 +94,132 @@
     border-right: 1px solid rgb(204, 204, 204);
     border-bottom: 1px solid rgb(204, 204, 204);
 }
+
+/* new page */
+.sgs-new-title h1 {
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.sgs-new-col-bordered {
+    border: 2px solid rgb(255, 227, 0);
+    border-radius: 20px;
+    padding: 20px 40px;
+    max-width: 237px;
+}
+
+.sgs-new-col-title {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    color: black;
+    text-transform: uppercase;
+}
+
+.sgs-new-col-title a {
+    color: black;
+    text-decoration: none;
+}
+
+.sgs-new-col-bordered ul {
+    margin: 0;
+    padding: 0;
+}
+
+.sgs-new-col-bordered ul li {
+    list-style: none;
+    display: block;
+    margin: 15px 0;
+}
+
+.sgs-new-col-bordered ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sgs-new-search-result-item {
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .sgs-new-search-result-item {
+        padding-left: 0;
+    }
+    .settle-geo-search-results-page-new {
+        padding: 0 20px;
+    }
+}
+
+
+.sgs-new-search-result-item .sgs-new-col-left {
+    border: 2px solid rgb(0, 158, 242);
+    border-radius: 20px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 200px;
+}
+
+.sgs-new-search-result-item .sgs-new-col-right {
+    border: 2px solid rgb(0, 158, 242);
+    border-radius: 20px;
+    padding: 10px 20px;
+    min-height: 200px;
+}
+
+.sgs-new-search-result-item .sgs-new-col-subtitle {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.sgs-new-search-result-item .sgs-new-col-description {
+    border-top: 2px solid rgb(0, 158, 242);
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 5px 20px 0 20px;
+}
+
+.sgs-new-search-result-item .sgs-new-col-title {
+    margin-bottom: 0;
+}
+
+.sgs-new-search-result-item .sgs-new-userpic {
+
+}
+
+.sgs-new-search-result-item .sgs-new-userpic .sgs-userpic-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    border: 2px solid rgb(0, 158, 242);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.sgs-new-search-result-item .sgs-new-userpic .sgs-userpic-wrapper img {
+    width: 100%;
+}
+
+.sgs-new-search-result-item .sgs-new-userpic span {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.sgs-new-search-result-item .sgs-new-contribs {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px 0;
+}
+
+.sgs-new-last-updated {
+    font-size: 14px;
+}
+
+.sgs-new-search-result-item.border-green .sgs-new-col-left,
+.sgs-new-search-result-item.border-green .sgs-new-col-right {
+    border: 2px solid rgb(55, 195, 85);
+}
