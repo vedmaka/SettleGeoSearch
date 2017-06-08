@@ -228,3 +228,9 @@
 .sgs-new-search-result-item.border-green .sgs-new-col-right {
     border: 2px solid rgb(55, 195, 85);
 }
+
+.sgs-new-search-result-item:nth-child(odd) .sgs-new-col-left,
+.sgs-new-search-result-item:nth-child(odd) .sgs-new-col-right,
+.sgs-new-search-result-item .sgs-new-userpic .sgs-userpic-wrapper {
+    border: 2px solid rgb(55, 195, 85);
+}
