@@ -141,20 +141,25 @@
 
 .sgs-new-search-result-item {
     padding-left: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 @media (max-width: 768px) {
     .sgs-new-search-result-item {
         padding-left: 0;
+	    display: flex;
+	    flex-direction: column;
     }
+	.sgs-new-search-result-item .sgs-new-col-left {
+		order: 1;
+	}
     #settle-geo-search-results-page-new {
         padding: 0 20px;
     }
     .sgs-new-col-bordered {
         max-width: 100%;
-        /*margin-left: -15px;
-        margin-right: -15px;*/
+	    width: 100%;
+	    margin-top: 15px;
     }
 }
 
@@ -163,16 +168,16 @@
     border: 2px solid rgb(0, 158, 242);
     border-radius: 20px;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 6px;
     padding-bottom: 10px;
-    min-height: 200px;
+    min-height: 140px;
 }
 
 .sgs-new-search-result-item .sgs-new-col-right {
     border: 2px solid rgb(0, 158, 242);
     border-radius: 20px;
     padding: 10px 20px;
-    min-height: 200px;
+    min-height: 140px;
 }
 
 .sgs-new-search-result-item .sgs-new-col-subtitle {
@@ -185,6 +190,8 @@
     margin-left: -20px;
     margin-right: -20px;
     padding: 5px 20px 0 20px;
+    max-height: 69px;
+    overflow: hidden;
 }
 
 .sgs-new-search-result-item .sgs-new-col-title {
@@ -196,9 +203,9 @@
 }
 
 .sgs-new-search-result-item .sgs-new-userpic .sgs-userpic-wrapper {
-    width: 70px;
-    height: 70px;
-    border-radius: 70px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
     border: 2px solid rgb(0, 158, 242);
     overflow: hidden;
     margin: 0 auto;
@@ -218,7 +225,7 @@
 .sgs-new-search-result-item .sgs-new-contribs {
     font-weight: bold;
     font-size: 15px;
-    padding: 10px 0;
+    padding: 0;
 }
 
 .sgs-new-last-updated {
