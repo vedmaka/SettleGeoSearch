@@ -235,3 +235,8 @@
 .sgs-new-search-result-item:nth-child(odd) .sgs-new-userpic .sgs-userpic-wrapper {
     border: 2px solid rgb(55, 195, 85);
 }
+
+
+.sgs-new-search-result-item:nth-child(odd) .sgs-new-col-description {
+    border-top: 2px solid rgb(55, 195, 85);
+}
